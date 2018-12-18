@@ -26,26 +26,6 @@
                 <partial name="_ItemsList" model="@Model.Items" />
 
                 <!-- PAGER SIIA KOHTA -->
-                <div class="row">
-                    <div class="col-md-8 col-sm-8">
-                        <ul class="pagination pull-right">
-                            <li style="display:inline"><a href="@Url.Action("Index", new { page = 1 })">&laquo;</a></li>
-                            @for (var i = 1; i <= Model.PageResult.PageCount; i++)
-                            {
-                                if (i == Model.PageResult.CurrentPage)
-                                {
-                                    <li class="active" style="display:inline;"><a href="@Url.Action("Index", new { page = i })">@i</a></li>
-                                }
-                                else
-                                {
-                                    <li style="display:inline"><a href="@Url.Action("Index", new { page = i })">@i</a></li>
-                                }
-                            }
-                            <li style="display:inline"><a href="@Url.Action("Index", new { page = Math.Max(0,Model.PageResult.PageCount) })">&raquo;</a></li>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
             <!-- END CONTENT -->
         </div>
