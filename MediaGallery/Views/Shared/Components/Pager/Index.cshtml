@@ -1,0 +1,21 @@
+﻿@model PagedResultBase
+
+<div class="row">
+    <div class="col-md-8 col-sm-8">
+        <ul class="pagination pull-right">
+            <li style="display:inline"><a href="@Url.Action("Index", new { page = 1 })">&laquo;</a></li>
+            @for (var i = 1; i <= 10; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    <li class="active" style="display:inline;"><a href="@Url.Action("Index", new { page = i })">@i</a></li>
+                }
+                else if (i > Model.CurrentPage - 4 && i < Model.CurrentPage + 4)
+                {
+                    <li style="display:inline"><a href="@Url.Action("Index", new { page = i })">@i</a></li>
+                }
+            }
+            <li style="display:inline"><a href="@Url.Action("Index", new { page = 10 })">&raquo;</a></li>
+        </ul>
+    </div>
+</div>

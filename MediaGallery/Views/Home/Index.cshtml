@@ -1,0 +1,63 @@
+﻿@model FrontPageModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+</style>
+<body>
+
+</body>
+
+<div class="main">
+    <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+
+            <partial name="_Sidebar" />
+
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-9 col-sm-7">
+                <ul>
+                    @foreach (var photo in Model.AllPhotos.Results)
+                    {
+                        <li>@photo.Id - @photo.Thumbnail</li>
+                    }
+                </ul>
+
+                <!-- SIIA ASEMELE PAGER COMPONENT -->
+                <partial name="Components/Pager/Index" model="@Model.AllPhotos" />
+
+                <h2>New photos</h2>
+
+                <partial name="_ItemsList" model="@Model.NewPhotos" />
+
+                <h2>Popular photos</h2>
+
+                <partial name="_ItemsList" model="@Model.PopularPhotos" />
+
+                <!-- BEGIN PAGINATOR -->
+                <partial name="Components/Pager/Index" model="@Model.AllPhotos" />
+                <!-- END PAGINATOR -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>
